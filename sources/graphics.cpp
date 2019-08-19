@@ -23,6 +23,7 @@ bool WormArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
       cr->arc(x*fieldWidth + fieldWidth/2, y*fieldHeight + fieldHeight/2,
               std::min(fieldWidth,fieldHeight) / 2.5, 0.0, 2.0 * M_PI);
       cr->fill_preserve();
+      cr->stroke();
     }
   }
   cr->restore();

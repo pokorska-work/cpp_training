@@ -12,7 +12,7 @@ class WormArea : public Gtk::DrawingArea {
   bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
 
  public:
-  WormArea() : board_(100,100) { board_.addWorm(Lazy,50,45); /*board_.addWorm(Lazy,4,6);*/ }
+  WormArea() : board_(100,100) { board_.addWorm(Lazy,0,0); board_.addWorm(Lazy,99,99); }
   virtual ~WormArea() { }
   void force_redraw();
 };
@@ -26,7 +26,6 @@ class Graphics : public Gtk::Window {
 
   Graphics();
   virtual ~Graphics() { }
-  //void drawBoard(const Board& b);
 };
 
 #endif // GRAPHICS_H_

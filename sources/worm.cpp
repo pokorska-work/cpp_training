@@ -8,12 +8,18 @@ void Worm::move() {
   else if (currDir_ == UP) y_--;
   else if (currDir_ == DOWN) y_++;
   else std::cout << "Wrong direction: " << currDir_ << "\n";
+
+  x_ %= board_->getWidth();
+  y_ %= board_->getHeight();
+  if (x_ < 0) x_ += board_->getWidth();
+  if (y_ < 0) y_ += board_->getHeight();
+
   board_->update(id_,oldX,oldY,x_,y_);
 }
 
 void LazyWorm::run() {
   while (alive) {
-    std::cout << "I'm at " << x_ << " " << y_ << "\n";
+    std::cout << "Id " << id_ << ": I'm at " << x_ << " " << y_ << "\n";
     // Pick waiting time between 0.1s and 1s.
     int delay = rand() % 901;
     std::this_thread::sleep_for(std::chrono::milliseconds(100 + delay));

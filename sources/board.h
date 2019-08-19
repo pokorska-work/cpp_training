@@ -15,17 +15,19 @@ class Board {
   std::vector<std::vector<int>> board_;
   // TODO: cleanup dead worms.
   std::unordered_map<int, std::thread> worms_;
+  int nextId_;
 
  public:
-  Board(int width, int height) { // TODO: handle incorrect arguments.
+  Board(int width, int height): nextId_(1) { // TODO: handle incorrect arguments.
     board_.resize(height+1);
     for (int i = 0; i < board_.size(); ++i)
       board_[i].resize(width+1);
   }
   void addWorm(WormType type, int x, int y) {
     if (type == Lazy) {
-      worms_.emplace(1, std::thread(LazyWorm(x,y,this),1));
-      board_[x][y] = 1;
+      worms_.emplace(nextId_, std::thread(LazyWorm(x,y,this),nextId_));
+      board_[x][y] = nextId_;
+      nextId_++;
     }
   }
   int getWidth() const { return board_[0].size(); }

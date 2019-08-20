@@ -9,19 +9,15 @@
 #define RIGHT 2
 #define DOWN 3
 
-//#include "board.h"
-#include <iostream>
-
 class Board;
 
 class Worm : public std::thread {
  protected:
   int id_;
-  int x_, y_; // Coordinates of the head
+  int x_, y_; // Coordinates
   int currDir_;
-  std::vector<std::pair<int,int>> tail_; // coordinates of the tail
   bool alive;
-  Board* board_; // No ownership, TODO: change to shared_ptr
+  Board* board_; // No ownership, should be shared_ptr instead.
 
  public:
   Worm(int x, int y, Board* b, int dir = 0)

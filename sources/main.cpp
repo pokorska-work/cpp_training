@@ -6,7 +6,5 @@
 
 int main(int argc, char** argv) {
   std::cout << "Worms app\n";
-  //std::thread t(LazyWorm(1,2,nullptr),2);
-  //t.join();
-  return Graphics::createAndRun(argc, argv, 10, 10, true);
+  return Graphics::createAndRun(argc, argv, 20, 20, true);
 }

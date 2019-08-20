@@ -4,12 +4,15 @@
 
 using Gtk::DrawingArea;
 
-WormArea::WormArea(int width, int height) : board_(width,height) {
+WormArea::WormArea(int width, int height)
+    : board_(width,height), debug_(false) {
   for (int i = 0; i < 50; ++i) {
-    board_.addWorm(Lazy,rand() % board_.getWidth(), rand() % board_.getHeight());
+    board_.addWorm(Lazy, rand() % board_.getWidth(),
+                   rand() % board_.getHeight());
   }
   for (int i = 0; i < 20; ++i) {
-    board_.addWorm(Hunter,rand() % board_.getWidth(), rand() % board_.getHeight());
+    board_.addWorm(Hunter, rand() % board_.getWidth(),
+                   rand() % board_.getHeight());
   }
 }
 
@@ -82,19 +85,22 @@ void WormArea::force_redraw()
   auto win = get_window();
   if (win)
   {
-    Gdk::Rectangle r(0, 0, get_allocation().get_width(), get_allocation().get_height());
+    Gdk::Rectangle r(0, 0, get_allocation().get_width(),
+                     get_allocation().get_height());
     win->invalidate_rect(r, false);
   }
 }
 
 // Static function to set up and run the application.
-int Graphics::createAndRun(int argc, char** argv, int width, int height, bool debug) {
+int Graphics::createAndRun(int argc, char** argv,
+    int width, int height, bool debug) {
   auto app = Gtk::Application::create(argc, argv, "Worms");
   Graphics window(width, height, debug);
   return app->run(window);
 }
 
-Graphics::Graphics(int width, int height, bool debug) : drawingArea_(width, height) {
+Graphics::Graphics(int width, int height, bool debug)
+    : drawingArea_(width, height) {
   set_title("Worms");
   set_default_size(1800,900);
   drawingArea_.setDebug(debug);

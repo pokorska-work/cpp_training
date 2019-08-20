@@ -30,6 +30,7 @@ class Board {
       worm.second.join();
   }
   void addWorm(WormType type, int x, int y) {
+    if (board_[x][y] > 0) return;
     if (type == Lazy) {
       worms_.emplace(nextId_, std::thread(LazyWorm(x,y,this),nextId_));
     } else {

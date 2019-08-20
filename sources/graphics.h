@@ -15,7 +15,7 @@ class WormArea : public Gtk::DrawingArea {
       int x, int y, int rectangle_width, int rectangle_height, int id);
 
  public:
-  WormArea();
+  WormArea(int width, int height);
   virtual ~WormArea() { }
   void force_redraw();
   void setDebug(bool debug) { debug_ = debug; }
@@ -26,9 +26,10 @@ class Graphics : public Gtk::Window {
   WormArea drawingArea_;
  public:
   // Seting up and running the application.
-  static int createAndRun(int argc, char** argv, bool debug = false);
+  static int createAndRun(int argc, char** argv,
+      int width, int height, bool debug = false);
 
-  Graphics(bool debug = false);
+  Graphics(int width, int height, bool debug = false);
   virtual ~Graphics() { }
 };
 

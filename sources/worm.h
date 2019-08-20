@@ -36,11 +36,22 @@ class Worm : public std::thread {
 class LazyWorm : public Worm {
  public:
   LazyWorm(int x, int y, Board* b) : Worm(x,y,b) {
-    srand(time(nullptr));
     currDir_ = rand() % 4;
   }
   void run();
 };
 
+class HunterWorm : public Worm {
+ private:
+  std::pair<int,int> goalPos_ = {0,0};
+  int goalId_ = -1;
+
+  std::pair<int,int> findClosest(int id, std::pair<int,int> start);
+ public:
+  HunterWorm(int x, int y, Board* b) : Worm(x,y,b) {
+    currDir_ = rand() % 4;
+  }
+  void run();
+};
 
 #endif // WORM_H_

@@ -7,14 +7,18 @@
 class WormArea : public Gtk::DrawingArea {
  private:
   Board board_;
+  bool debug_ = false;
 
  protected:
   bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
+  void draw_text(const Cairo::RefPtr<Cairo::Context>& cr,
+      int x, int y, int rectangle_width, int rectangle_height, int id);
 
  public:
-  WormArea() : board_(100,100) { board_.addWorm(Lazy,0,0); board_.addWorm(Lazy,99,99); }
+  WormArea();
   virtual ~WormArea() { }
   void force_redraw();
+  void setDebug(bool debug) { debug_ = debug; }
 };
 
 class Graphics : public Gtk::Window {
@@ -22,9 +26,9 @@ class Graphics : public Gtk::Window {
   WormArea drawingArea_;
  public:
   // Seting up and running the application.
-  static int createAndRun(int argc, char** argv);
+  static int createAndRun(int argc, char** argv, bool debug = false);
 
-  Graphics();
+  Graphics(bool debug = false);
   virtual ~Graphics() { }
 };
 

@@ -16,16 +16,9 @@ using std::vector;
 
 void Worm::move() {
   int oldX = x_, oldY = y_;
-  if (currDir_ == LEFT) x_--;
-  else if (currDir_ == RIGHT) x_++;
-  else if (currDir_ == UP) y_--;
-  else if (currDir_ == DOWN) y_++;
-  else std::cout << "Wrong direction: " << currDir_ << "\n";
 
-  x_ %= board_->getWidth();
-  y_ %= board_->getHeight();
-  if (x_ < 0) x_ += board_->getWidth();
-  if (y_ < 0) y_ += board_->getHeight();
+  // TODO: Implement the body of the function. It should perform one step
+  // based on currDir_ and modify class variables x_ and y_.
 
   board_->update(id_,oldX,oldY,x_,y_);
 }

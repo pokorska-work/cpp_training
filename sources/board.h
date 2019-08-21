@@ -21,7 +21,7 @@ class Board {
 
  public:
   Board(int width, int height);
-  virtual ~Board();
+  virtual ~Board() { }
   virtual void addWorm(WormType type, int x, int y);
   virtual int getWidth() const { return board_[0].size(); }
   virtual int getHeight() const { return board_.size(); }

@@ -1,5 +1,4 @@
-#ifndef GRAPHICS_H_
-#define GRAPHICS_H_
+#pragma once
 
 #include <gtkmm.h>
 #include "board.h"
@@ -7,17 +6,16 @@
 class WormArea : public Gtk::DrawingArea {
  private:
   Board board_;
-  bool debug_ = false;
+  bool debug_;
 
  protected:
   bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr) override;
-  void draw_text(const Cairo::RefPtr<Cairo::Context>& cr,
-      int x, int y, int rectangle_width, int rectangle_height, int id);
+  void drawText(const Cairo::RefPtr<Cairo::Context>& cr, int x, int y, int id);
 
  public:
   WormArea(int width, int height);
   virtual ~WormArea() { }
-  void force_redraw();
+  void forceRedraw();
   void setDebug(bool debug) { debug_ = debug; }
 };
 
@@ -32,5 +30,3 @@ class Graphics : public Gtk::Window {
   Graphics(int width, int height, bool debug = false);
   virtual ~Graphics() { }
 };
-
-#endif // GRAPHICS_H_

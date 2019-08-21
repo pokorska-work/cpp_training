@@ -1,5 +1,4 @@
-#ifndef BOARD_H_
-#define BOARD_H_
+#pragma once
 
 #include <unordered_map>
 #include <unordered_set>
@@ -32,5 +31,3 @@ class Board {
   bool checkKill(int id) { return killed_.count(id) > 0; }
   void clearDead();
 };
-
-#endif // BOARD_H_

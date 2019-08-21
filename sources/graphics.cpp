@@ -5,7 +5,7 @@
 using Gtk::DrawingArea;
 
 WormArea::WormArea(int width, int height)
-    : board_(width,height), debug_(false) {
+    : board_(width, height), debug_(false) {
   for (int i = 0; i < 50; ++i) {
     board_.addWorm(Lazy, rand() % board_.getWidth(),
                    rand() % board_.getHeight());
@@ -41,9 +41,8 @@ bool WormArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
       if (debug_) {
         cr->stroke();
         // Draw id inside circle
-        this->draw_text(cr, x*fieldWidth + fieldWidth/2,
-            y*fieldHeight + fieldHeight/2,
-            fieldWidth, fieldHeight, board_.at(x,y));
+        this->drawText(cr, x*fieldWidth + fieldWidth/2,
+            y*fieldHeight + fieldHeight/2, board_.at(x,y));
       } else {
         // Fill the circle
         cr->fill_preserve();
@@ -55,32 +54,32 @@ bool WormArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
   cr->restore();
   cr->stroke();
 
-  force_redraw();
+  this->forceRedraw();
 
   return true;
 }
 
-void WormArea::draw_text(const Cairo::RefPtr<Cairo::Context>& cr,
-    int x, int y, int rectangle_width, int rectangle_height, int id) {
+void WormArea::drawText(const Cairo::RefPtr<Cairo::Context>& cr,
+    int x, int y, int id) {
   Pango::FontDescription font;
   font.set_family("Monospace");
   font.set_weight(Pango::WEIGHT_BOLD);
   auto layout = create_pango_layout(std::to_string(id));
   layout->set_font_description(font);
 
-  int text_width;
-  int text_height;
+  int textWidth;
+  int textHeight;
 
   //get the text dimensions (it updates the variables -- by reference)
-  layout->get_pixel_size(text_width, text_height);
+  layout->get_pixel_size(textWidth, textHeight);
 
   // Position the text in (x,y)
-  cr->move_to(x - text_width/2,y - text_height/2);
+  cr->move_to(x - textWidth/2,y - textHeight/2);
 
   layout->show_in_cairo_context(cr);
 }
 
-void WormArea::force_redraw()
+void WormArea::forceRedraw()
 {
   auto win = get_window();
   if (win)

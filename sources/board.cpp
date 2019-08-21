@@ -4,7 +4,7 @@
 // TODO: handle incorrect arguments.
 Board::Board(int width, int height) : nextId_(1) {
   board_.resize(height+1);
-  for (int i = 0; i < board_.size(); ++i)
+  for (int i = 0; i < (int)board_.size(); ++i)
     board_[i].resize(width+1);
 }
 
@@ -34,8 +34,8 @@ void Board::update(int id, int oldX, int oldY, int newX, int newY) {
 }
 
 void Board::clearDead() {
-  for (int i = 0; i < board_.size(); ++i)
-    for (int j = 0; j < board_[0].size(); ++j)
+  for (int i = 0; i < (int)board_.size(); ++i)
+    for (int j = 0; j < (int)board_[0].size(); ++j)
       if (killed_.count(board_[i][j]) > 0)
         board_[i][j] = 0;
 }

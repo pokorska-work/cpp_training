@@ -1,13 +1,9 @@
-#ifndef WORM_H_
-#define WORM_H_
+#pragma once
 
 #include <vector>
 #include <thread>
 
-#define LEFT 0
-#define UP 1
-#define RIGHT 2
-#define DOWN 3
+constexpr int LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3;
 
 class Board;
 
@@ -49,5 +45,3 @@ class HunterWorm : public Worm {
   }
   void run();
 };
-
-#endif // WORM_H_

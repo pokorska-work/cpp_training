@@ -5,7 +5,7 @@
 using Gtk::DrawingArea;
 
 WormArea::WormArea(int width, int height)
-    : board_(width, height), debug_(false) {
+    : board_(width, height), debug_{false} {
   for (int i = 0; i < 50; ++i) {
     board_.addWorm(Lazy, rand() % board_.getWidth(),
                    rand() % board_.getHeight());

@@ -1,7 +1,7 @@
 #include "board.h"
 
 
-Board::Board(int width, int height) : nextId_(1), killAll_(false) {
+Board::Board(int width, int height) : nextId_{1}, killAll_{false} {
   board_.resize(height);
   for (int i = 0; i < (int)board_.size(); ++i)
     board_[i].resize(width);
@@ -32,6 +32,10 @@ void Board::update(int id, int oldX, int oldY, int newX, int newY) {
   board_[newX][newY] = id;
 }
 
+bool Board::checkKill(int id) {
+  return killAll_ || killed_.find(id) != killed_.end();
+}
+
 void Board::killAll() {
   killAll_ = true;
 }
@@ -39,6 +43,6 @@ void Board::killAll() {
 void Board::clearDead() {
   for (int i = 0; i < (int)board_.size(); ++i)
     for (int j = 0; j < (int)board_[0].size(); ++j)
-      if (killed_.count(board_[i][j]) > 0)
+      if (killed_.find(board_[i][j]) != killed_.end())
         board_[i][j] = 0;
 }

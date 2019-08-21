@@ -29,7 +29,7 @@ class Board {
   virtual int at(int x, int y) const { return board_[x][y]; }
   virtual void update(int id, int oldX, int oldY, int newX, int newY);
   virtual WormType getWormType(int id) { return wormTypes_[id]; }
-  virtual bool checkKill(int id) { return killAll_ || killed_.count(id) > 0; }
+  virtual bool checkKill(int id);
   virtual void killAll();
   virtual void clearDead();
 };

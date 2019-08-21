@@ -65,7 +65,7 @@ void HunterWorm::run() {
     int delay = rand() % 901;
     std::this_thread::sleep_for(std::chrono::milliseconds(100 + delay));
 
-    pair<int,int> target, myPos = make_pair(x_,y_);
+    pair<int,int> target, myPos = {x_,y_};
     if (goalId_ != -1) {
       target = findClosest(goalId_, goalPos_);
       if (target.first < 0)
@@ -124,7 +124,7 @@ pair<int,int> HunterWorm::findClosest(int id, pair<int,int> start) {
       pair<int,int> newV = make_pair(newX,newY);
       if (newX < 0 || newX >= board_->getWidth()) continue;
       if (newY < 0 || newY >= board_->getHeight()) continue;
-      if (visited.count(newV) > 0) continue;
+      if (visited.find(newV) != visited.end()) continue;
 
       if (id < 0) {
         if (board_->at(newX,newY) > 0) return newV;

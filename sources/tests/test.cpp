@@ -21,7 +21,7 @@ class MockWorm : public Worm {
   void setId(int id) { id_ = id; }
   int getId() const { return id_; }
   void run() { }
-  std::pair<int,int> getPos() const { return std::make_pair(x_,y_); }
+  std::pair<int,int> getPos() const { return {x_,y_}; }
 };
 
 class MockBoardNoUpdate : public Board {

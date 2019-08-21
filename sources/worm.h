@@ -16,8 +16,8 @@ class Worm {
   Board* board_; // No ownership, should be shared_ptr instead.
 
  public:
-  Worm(int x, int y, Board* b, int dir = 0)
-    : x_(x), y_(y), currDir_(dir), alive(true), board_(b) {}
+  Worm(int x, int y, Board* b)
+    : x_{x}, y_{y}, currDir_{rand()%4}, alive{true}, board_{b} {}
   virtual ~Worm() { }
   virtual void move();
   void kill() { alive = false; }
@@ -28,9 +28,7 @@ class Worm {
 
 class LazyWorm : public Worm {
  public:
-  LazyWorm(int x, int y, Board* b) : Worm(x,y,b) {
-    currDir_ = rand() % 4;
-  }
+  LazyWorm(int x, int y, Board* b) : Worm(x,y,b) { }
   void run();
 };
 
@@ -41,8 +39,6 @@ class HunterWorm : public Worm {
 
   std::pair<int,int> findClosest(int id, std::pair<int,int> start);
  public:
-  HunterWorm(int x, int y, Board* b) : Worm(x,y,b) {
-    currDir_ = rand() % 4;
-  }
+  HunterWorm(int x, int y, Board* b) : Worm(x,y,b) { }
   void run();
 };

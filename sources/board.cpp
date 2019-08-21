@@ -12,7 +12,7 @@ void Board::addWorm(WormType type, int x, int y) {
   // into the board_ and start a new thread which will invoke
   // call operator - operator()(int) - defined in Worm class.
   // Note: there are a few class members (like wormTypes_) that need to be
-  // updated as well to have full information about the worm that is being\
+  // updated as well to have full information about the worm that is being
   // added. They are usually based on worm's id which should be uniquely given
   // here.
 }

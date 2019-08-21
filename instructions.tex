@@ -87,11 +87,28 @@ Source files with main logic are available in \texttt{sources/}, all tests
 are within \texttt{tests/}. Your first modifications will need to be made
 in \texttt{sources/worm.cpp} and \texttt{sources/board.cpp}.
 
+\subsection{Environment}
+You will need to have \href{https://www.gtkmm.org/en/download.html}{\textit{gtkmm}}
+and \href{https://github.com/google/googletest}{\textit{gtest}} installed to run
+the application and tests, respectively.
+
+There is a separate \texttt{makefile} prepared for \texttt{sources/}
+and \texttt{sources/tests/}, but it is desired for Ubuntu command line.
+If you are using different operating system you will need to add all
+the files (\texttt{*.h} and \texttt{*.cpp}) into a project within your IDE.
+Then you will need to add linker flag \texttt{`pkg-config gtkmm-3.0 --cflags --libs`}
+or see detailed Windows instructions on \href{https://wiki.gnome.org/Projects/gtkmm/MSWindows}{gnome page}.
+
+Tests have different path (\texttt{sources/tests/}) and different \texttt{makefile},
+so different settings are required. Make sure you have installed \textit{gtest}
+and added linker flags \texttt{-lgtest -lpthread}.
+
 \subsection{Debugging}
 
 Tha application has debug mode which draws all the worm ids on the board
-instead of plain circles. You may turn it on by changing the very last
-parameter of call function \texttt{createAndRun} to \texttt{true} within
+instead of plain circles. It is turned on within the project, but you may turn
+it off by changing the very last
+parameter of call function \texttt{createAndRun} to \texttt{false} within
 \texttt{main.cpp} file. You may also want to modify other parameters
 to change the size of the board (cureently it is 20x20 fields).
 

@@ -7,7 +7,7 @@ constexpr int LEFT = 0, UP = 1, RIGHT = 2, DOWN = 3;
 
 class Board;
 
-class Worm : public std::thread {
+class Worm {
  protected:
   int id_;
   int x_, y_; // Coordinates
@@ -18,10 +18,11 @@ class Worm : public std::thread {
  public:
   Worm(int x, int y, Board* b, int dir = 0)
     : x_(x), y_(y), currDir_(dir), alive(true), board_(b) {}
-  void move();
+  virtual ~Worm() { }
+  virtual void move();
   void kill() { alive = false; }
   virtual void run() = 0;
-  void operator()(int id) { id_ = id; run(); }
+  virtual void operator()(int id) { id_ = id; run(); }
   int getId() const { return id_; }
 };
 

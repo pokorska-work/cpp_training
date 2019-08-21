@@ -1,11 +1,10 @@
 #include "board.h"
 
 
-// TODO: handle incorrect arguments.
-Board::Board(int width, int height) : nextId_(1) {
-  board_.resize(height+1);
+Board::Board(int width, int height) : nextId_(1), killAll_(false) {
+  board_.resize(height);
   for (int i = 0; i < (int)board_.size(); ++i)
-    board_[i].resize(width+1);
+    board_[i].resize(width);
 }
 
 Board::~Board() {
@@ -31,6 +30,10 @@ void Board::update(int id, int oldX, int oldY, int newX, int newY) {
     killed_.insert(targetId);
   board_[oldX][oldY] = 0;
   board_[newX][newY] = id;
+}
+
+void Board::killAll() {
+  killAll_ = true;
 }
 
 void Board::clearDead() {
